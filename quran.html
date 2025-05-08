@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>سور القرآن الكريم</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .top-bar {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+    .search-bar {
+    text-align: center;
+    margin: 20px;
+}
+
+.search-bar input {
+    width: 80%;
+    max-width: 500px;
+    padding: 12px;
+    font-size: 18px;
+    border: 2px solid #f39c12;
+    border-radius: 10px;
+    background-color: #1e1e1e;
+    color: white;
+}
+.back-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #f39c12;
+    color: #121212;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+    background-color: #e67e22;
+    transform: scale(1.03);
+}
+    h1 {
+      color: #f1c40f;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .surah-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .surah-item {
+      background-color: #1f1f1f;
+      border: 2px solid #f39c12;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      font-size: 18px;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      color: white;
+    }
+
+    .surah-item:hover {
+      background-color: #f39c12;
+      color: #121212;
+    }
+  </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="main.html">
+        <button class="back-button">الرجوع إلى الصفحة الرئيسية</button>
+    </a>
+</div>
+<div class="search-bar">
+    <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="ابحث عن السورة أو الحديث...">
+</div>
+  <h1>سور القرآن الكريم</h1>
+
+  <div class="surah-list">
+    <a class="surah-item" href="tafseer_fatiha.html">الفاتحة</a>
+    <a class="surah-item" href="tafseer_baqara.html">البقرة</a>
+    <a class="surah-item" href="tafseer_ali_imran.html">آل عمران</a>
+    <a class="surah-item" href="tafseer_nisa.html">النساء</a>
+    <a class="surah-item" href="tafseer_maida.html">المائدة</a>
+    <a class="surah-item" href="tafseer_anam.html">الأنعام</a>
+    <a class="surah-item" href="tafseer_araf.html">الأعراف</a>
+    <a class="surah-item" href="tafseer_anfal.html">الأنفال</a>
+    <a class="surah-item" href="tafseer_tawba.html">التوبة</a>
+    <a class="surah-item" href="tafseer_yunus.html">يونس</a>
+    <a class="surah-item" href="tafseer_hud.html">هود</a>
+    <a class="surah-item" href="tafseer_yusuf.html">يوسف</a>
+    <a class="surah-item" href="tafseer_rad.html">الرعد</a>
+    <a class="surah-item" href="tafseer_ibrahim.html">إبراهيم</a>
+    <a class="surah-item" href="tafseer_hijr.html">الحجر</a>
+    <a class="surah-item" href="tafseer_nahl.html">النحل</a>
+    <a class="surah-item" href="tafseer_isra.html">الإسراء</a>
+    <a class="surah-item" href="tafseer_kahf.html">الكهف</a>
+    <a class="surah-item" href="tafseer_maryam.html">مريم</a>
+    <a class="surah-item" href="tafseer_taha.html">طه</a>
+    <a class="surah-item" href="tafseer_anbiya.html">الأنبياء</a>
+    <a class="surah-item" href="tafseer_hajj.html">الحج</a>
+    <a class="surah-item" href="tafseer_muminun.html">المؤمنون</a>
+    <a class="surah-item" href="tafseer_nur.html">النور</a>
+    <a class="surah-item" href="tafseer_furqan.html">الفرقان</a>
+    <a class="surah-item" href="tafseer_shuara.html">الشعراء</a>
+    <a class="surah-item" href="tafseer_naml.html">النمل</a>
+    <a class="surah-item" href="tafseer_qasas.html">القصص</a>
+    <a class="surah-item" href="tafseer_ankabut.html">العنكبوت</a>
+    <a class="surah-item" href="tafseer_rum.html">الروم</a>
+    <a class="surah-item" href="tafseer_luqman.html">لقمان</a>
+    <a class="surah-item" href="tafseer_sajda.html">السجدة</a>
+    <a class="surah-item" href="tafseer_ahzab.html">الأحزاب</a>
+    <a class="surah-item" href="tafseer_saba.html">سبأ</a>
+    <a class="surah-item" href="tafseer_fatir.html">فاطر</a>
+    <a class="surah-item" href="tafseer_ya_sin.html">يس</a>
+    <a class="surah-item" href="tafseer_saffat.html">الصافات</a>
+    <a class="surah-item" href="tafseer_sad.html">ص</a>
+    <a class="surah-item" href="tafseer_zumar.html">الزمر</a>
+    <a class="surah-item" href="tafseer_ghafir.html">غافر</a>
+    <a class="surah-item" href="tafseer_fussilat.html">فصلت</a>
+    <a class="surah-item" href="tafseer_shura.html">الشورى</a>
+    <a class="surah-item" href="tafseer_zukhruf.html">الزخرف</a>
+    <a class="surah-item" href="tafseer_dukhan.html">الدخان</a>
+    <a class="surah-item" href="tafseer_jathiya.html">الجاثية</a>
+    <a class="surah-item" href="tafseer_ahqaf.html">الأحقاف</a>
+    <a class="surah-item" href="tafseer_muhammad.html">محمد</a>
+    <a class="surah-item" href="tafseer_fath.html">الفتح</a>
+    <a class="surah-item" href="tafseer_hujurat.html">الحجرات</a>
+    <a class="surah-item" href="tafseer_qaf.html">ق</a>
+    <a class="surah-item" href="tafseer_dhariyat.html">الذاريات</a>
+    <a class="surah-item" href="tafseer_tur.html">الطور</a>
+    <a class="surah-item" href="tafseer_najm.html">النجم</a>
+    <a class="surah-item" href="tafseer_qamar.html">القمر</a>
+    <a class="surah-item" href="tafseer_rahman.html">الرحمن</a>
+    <a class="surah-item" href="tafseer_waqia.html">الواقعة</a>
+    <a class="surah-item" href="tafseer_hadid.html">الحديد</a>
+    <a class="surah-item" href="tafseer_mujadila.html">المجادلة</a>
+    <a class="surah-item" href="tafseer_hashr.html">الحشر</a>
+    <a class="surah-item" href="tafseer_mumtahina.html">الممتحنة</a>
+    <a class="surah-item" href="tafseer_saff.html">الصف</a>
+    <a class="surah-item" href="tafseer_jumua.html">الجمعة</a>
+    <a class="surah-item" href="tafseer_munafiqun.html">المنافقون</a>
+    <a class="surah-item" href="tafseer_taghabun.html">التغابن</a>
+    <a class="surah-item" href="tafseer_talaq.html">الطلاق</a>
+    <a class="surah-item" href="tafseer_tahrim.html">التحريم</a>
+    <a class="surah-item" href="tafseer_mulk.html">الملك</a>
+    <a class="surah-item" href="tafseer_qalam.html">القلم</a>
+    <a class="surah-item" href="tafseer_haqqa.html">الحاقة</a>
+    <a class="surah-item" href="tafseer_maarij.html">المعارج</a>
+    <a class="surah-item" href="tafseer_nuh.html">نوح</a>
+    <a class="surah-item" href="tafseer_jinn.html">الجن</a>
+    <a class="surah-item" href="tafseer_muzzammil.html">المزمل</a>
+    <a class="surah-item" href="tafseer_muddathir.html">المدثر</a>
+    <a class="surah-item" href="tafseer_qiyama.html">القيامة</a>
+    <a class="surah-item" href="tafseer_insan.html">الإنسان</a>
+    <a class="surah-item" href="tafseer_mursalat.html">المرسلات</a>
+    <a class="surah-item" href="tafseer_naba.html">النبأ</a>
+    <a class="surah-item" href="tafseer_naziat.html">النازعات</a>
+    <a class="surah-item" href="tafseer_abasa.html">عبس</a>
+    <a class="surah-item" href="tafseer_takwir.html">التكوير</a>
+    <a class="surah-item" href="tafseer_infitar.html">الإنفطار</a>
+    <a class="surah-item" href="tafseer_mutaffifin.html">المطففين</a>
+    <a class="surah-item" href="tafseer_inshiqaq.html">الانشقاق</a>
+    <a class="surah-item" href="tafseer_buruj.html">البروج</a>
+    <a class="surah-item" href="tafseer_tariq.html">الطارق</a>
+    <a class="surah-item" href="tafseer_ala.html">الأعلى</a>
+    <a class="surah-item" href="tafseer_ghashiya.html">الغاشية</a>
+    <a class="surah-item" href="tafseer_fajr.html">الفجر</a>
+    <a class="surah-item" href="tafseer_balad.html">البلد</a>
+    <a class="surah-item" href="tafseer_shams.html">الشمس</a>
+    <a class="surah-item" href="tafseer_lail.html">الليل</a>
+    <a class="surah-item" href="tafseer_duha.html">الضحى</a>
+    <a class="surah-item" href="tafseer_sharh.html">الشرح</a>
+    <a class="surah-item" href="tafseer_tin.html">التين</a>
+    <a class="surah-item" href="tafseer_alaq.html">العلق</a>
+    <a class="surah-item" href="tafseer_qadr.html">القدر</a>
+    <a class="surah-item" href="tafseer_bayyina.html">البينة</a>
+    <a class="surah-item" href="tafseer_zalzala.html">الزلزلة</a>
+    <a class="surah-item" href="tafseer_adiyat.html">العاديات</a>
+    <a class="surah-item" href="tafseer_qaria.html">القارعة</a>
+    <a class="surah-item" href="tafseer_takathur.html">التكاثر</a>
+    <a class="surah-item" href="tafseer_asr.html">العصر</a>
+    <a class="surah-item" href="tafseer_humaza.html">الهمزة</a>
+    <a class="surah-item" href="tafseer_fil.html">الفيل</a>
+    <a class="surah-item" href="tafseer_quraysh.html">قريش</a>
+    <a class="surah-item" href="tafseer_maun.html">الماعون</a>
+    <a class="surah-item" href="tafseer_kawthar.html">الكوثر</a>
+    <a class="surah-item" href="tafseer_kafiroon.html">الكافرون</a>
+    <a class="surah-item" href="tafseer_nasr.html">النصر</a>
+    <a class="surah-item" href="tafseer_masad.html">المسد</a>
+    <a class="surah-item" href="tafseer_ikhlas.html">الإخلاص</a>
+    <a class="surah-item" href="tafseer_falaq.html">الفلق</a>
+    <a class="surah-item" href="tafseer_nas.html">الناس</a>
+  </div>
+<script>
+function filterItems() {
+    var input = document.getElementById("searchInput").value.toLowerCase();
+    var items = document.querySelectorAll(".surah-item, .category");
+
+    items.forEach(function(item) {
+        var text = item.textContent || item.innerText;
+        if (text.toLowerCase().includes(input)) {
+            item.style.display = "";
+        } else {
+            item.style.display = "none";
+        }
+    });
+}
+</script>
+</body>
+</html>

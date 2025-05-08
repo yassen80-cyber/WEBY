@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta name="google-site-verification" content="usmHDK4qojepu2fhEjNuX_OX38lC1El4fvcgTtm_6WI" />
+    <link rel="canonical" href="https://yassen80-cyber.github.io/WEBY/" />
+    <meta charset="UTF-8">
+    <title>الصفحة الرئيسية - أحاديث نبوية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+.search-bar {
+    text-align: center;
+    margin: 20px;
+}
+
+.search-bar input {
+    width: 80%;
+    max-width: 500px;
+    padding: 12px;
+    font-size: 18px;
+    border: 2px solid #f39c12;
+    border-radius: 10px;
+    background-color: #1e1e1e;
+    color: white;
+}
+        .back-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #f39c12;
+            color: #121212;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #e67e22;
+            transform: scale(1.03);
+        }
+
+        h1 {
+            text-align: center;
+            color: #f1c40f;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            justify-items: center;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .category {
+            background-color: #1e1e1e;
+            border: 3px solid #f39c12;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 26px;
+            width: 100%;
+            max-width: 350px;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: #ffffff;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category:hover {
+            background-color: #f39c12;
+            color: #121212;
+            transform: scale(1.02);
+        }
+
+        .category:active {
+            transform: scale(0.98);
+        }
+
+        .category i {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="main.html"><button class="back-button">الرجوع إلى الصفحة الرئيسية</button></a>
+    </div>
+<div class="search-bar">
+    <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="ابحث عن السورة أو الحديث...">
+</div>
+    <h1>مرحبًا بك في موقع الأحاديث النبوية</h1>
+
+    <div class="categories">
+        <a class="category" href="ahadith_akhlaq.html"><i class="fas fa-heart"></i>أحاديث الأخلاق</a>
+        <a class="category" href="ahadith_jihad.html"><i class="fas fa-shield-alt"></i>أحاديث الجهاد</a>
+        <a class="category" href="ahadith_zakat.html"><i class="fas fa-hand-holding-usd"></i>أحاديث الزكاة</a>
+        <a class="category" href="ahadith_salat.html"><i class="fas fa-praying-hands"></i>أحاديث الصلاة</a>
+        <a class="category" href="ahadith_sawm.html"><i class="fas fa-moon"></i>أحاديث الصوم</a>
+        <a class="category" href="ahadith_ilm.html"><i class="fas fa-book"></i>أحاديث العلم</a>
+        <a class="category" href="ahadith_maghfirah.html"><i class="fas fa-feather-alt"></i>أحاديث المغفرة</a>
+    </div>
+<script>
+function filterItems() {
+    var input = document.getElementById("searchInput").value.toLowerCase();
+    var items = document.querySelectorAll(".surah-item, .category");
+
+    items.forEach(function(item) {
+        var text = item.textContent || item.innerText;
+        if (text.toLowerCase().includes(input)) {
+            item.style.display = "";
+        } else {
+            item.style.display = "none";
+        }
+    });
+}
+</script>
+</body>
+</html>
