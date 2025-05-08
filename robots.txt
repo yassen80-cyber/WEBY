@@ -1,3 +1,0 @@
-Sitemap: https://yassen80-cyber.github.io/WEBY/sitemap.xml
-User-agent: *
-Disallow:
