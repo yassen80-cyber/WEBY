@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>سور القرآن الكريم</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 20px;
+    }
+    .search-bar {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .search-bar input {
+      width: 80%;
+      max-width: 500px;
+      padding: 12px;
+      font-size: 18px;
+      border: 2px solid #f39c12;
+      border-radius: 10px;
+      background-color: #1e1e1e;
+      color: white;
+    }
+    .back-button {
+      padding: 10px 20px;
+      font-size: 20px;
+      background-color: #f39c12;
+      color: #121212;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .back-button:hover {
+      background-color: #e67e22;
+      transform: scale(1.03);
+    }
+
+    h1 {
+      color: #f1c40f;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .surah-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .surah-item {
+      background-color: #1f1f1f;
+      border: 2px solid #f39c12;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      font-size: 18px;
+      transition: background-color 0.3s;
+      color: white;
+    }
+
+    .surah-item:hover {
+      background-color: #f39c12;
+      color: #121212;
+    }
+  </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="main.html">
+        <button class="back-button">الرجوع إلى الصفحة الرئيسية</button>
+    </a>
+</div>
+<div class="search-bar">
+    <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="ابحث عن السورة...">
+</div>
+  <h1>سور القرآن الكريم</h1>
+
+  <div class="surah-list">
+    <div class="surah-item">الفاتحة</div>
+    <div class="surah-item">البقرة</div>
+    <div class="surah-item">آل عمران</div>
+    <div class="surah-item">النساء</div>
+    <div class="surah-item">المائدة</div>
+    <div class="surah-item">الأنعام</div>
+    <div class="surah-item">الأعراف</div>
+    <div class="surah-item">الأنفال</div>
+    <div class="surah-item">التوبة</div>
+    <div class="surah-item">يونس</div>
+    <div class="surah-item">هود</div>
+    <div class="surah-item">يوسف</div>
+    <div class="surah-item">الرعد</div>
+    <div class="surah-item">إبراهيم</div>
+    <div class="surah-item">الحجر</div>
+    <div class="surah-item">النحل</div>
+    <div class="surah-item">الإسراء</div>
+    <div class="surah-item">الكهف</div>
+    <div class="surah-item">مريم</div>
+    <div class="surah-item">طه</div>
+    <div class="surah-item">الأنبياء</div>
+    <div class="surah-item">الحج</div>
+    <div class="surah-item">المؤمنون</div>
+    <div class="surah-item">النور</div>
+    <div class="surah-item">الفرقان</div>
+    <div class="surah-item">الشعراء</div>
+    <div class="surah-item">النمل</div>
+    <div class="surah-item">القصص</div>
+    <div class="surah-item">العنكبوت</div>
+    <div class="surah-item">الروم</div>
+    <div class="surah-item">لقمان</div>
+    <div class="surah-item">السجدة</div>
+    <div class="surah-item">الأحزاب</div>
+    <div class="surah-item">سبأ</div>
+    <div class="surah-item">فاطر</div>
+    <div class="surah-item">يس</div>
+    <div class="surah-item">الصافات</div>
+    <div class="surah-item">ص</div>
+    <div class="surah-item">الزمر</div>
+    <div class="surah-item">غافر</div>
+    <div class="surah-item">فصلت</div>
+    <div class="surah-item">الشورى</div>
+    <div class="surah-item">الزخرف</div>
+    <div class="surah-item">الدخان</div>
+    <div class="surah-item">الجاثية</div>
+    <div class="surah-item">الأحقاف</div>
+    <div class="surah-item">محمد</div>
+    <div class="surah-item">الفتح</div>
+    <div class="surah-item">الحجرات</div>
+    <div class="surah-item">ق</div>
+    <div class="surah-item">الذاريات</div>
+    <div class="surah-item">الطور</div>
+    <div class="surah-item">النجم</div>
+    <div class="surah-item">القمر</div>
+    <div class="surah-item">الرحمن</div>
+    <div class="surah-item">الواقعة</div>
+    <div class="surah-item">الحديد</div>
+    <div class="surah-item">المجادلة</div>
+    <div class="surah-item">الحشر</div>
+    <div class="surah-item">الممتحنة</div>
+    <div class="surah-item">الصف</div>
+    <div class="surah-item">الجمعة</div>
+    <div class="surah-item">المنافقون</div>
+    <div class="surah-item">التغابن</div>
+    <div class="surah-item">الطلاق</div>
+    <div class="surah-item">التحريم</div>
+    <div class="surah-item">الملك</div>
+    <div class="surah-item">القلم</div>
+    <div class="surah-item">الحاقة</div>
+    <div class="surah-item">المعارج</div>
+    <div class="surah-item">نوح</div>
+    <div class="surah-item">الجن</div>
+    <div class="surah-item">المزمل</div>
+    <div class="surah-item">المدثر</div>
+    <div class="surah-item">القيامة</div>
+    <div class="surah-item">الإنسان</div>
+    <div class="surah-item">المرسلات</div>
+    <div class="surah-item">النبأ</div>
+    <div class="surah-item">النازعات</div>
+    <div class="surah-item">عبس</div>
+    <div class="surah-item">التكوير</div>
+    <div class="surah-item">الإنفطار</div>
+    <div class="surah-item">المطففين</div>
+    <div class="surah-item">الإنشقاق</div>
+    <div class="surah-item">البروج</div>
+    <div class="surah-item">الطارق</div>
+    <div class="surah-item">الأعلى</div>
+    <div class="surah-item">الغاشية</div>
+    <div class="surah-item">الفجر</div>
+    <div class="surah-item">البلد</div>
+    <div class="surah-item">الشمس</div>
+    <div class="surah-item">الليل</div>
+    <div class="surah-item">الضحى</div>
+    <div class="surah-item">الشرح</div>
+    <div class="surah-item">التين</div>
+    <div class="surah-item">العلق</div>
+    <div class="surah-item">القدر</div>
+    <div class="surah-item">البينة</div>
+    <div class="surah-item">الزلزلة</div>
+    <div class="surah-item">العاديات</div>
+    <div class="surah-item">القارعة</div>
+    <div class="surah-item">التكاثر</div>
+    <div class="surah-item">العصر</div>
+    <div class="surah-item">الهمزة</div>
+    <div class="surah-item">الفيل</div>
+    <div class="surah-item">قريش</div>
+    <div class="surah-item">الماعون</div>
+    <div class="surah-item">الكوثر</div>
+    <div class="surah-item">الكافرون</div>
+    <div class="surah-item">النصر</div>
+    <div class="surah-item">المسد</div>
+    <div class="surah-item">الإخلاص</div>
+    <div class="surah-item">الفلق</div>
+    <div class="surah-item">الناس</div>
+  </div>
+
+  <script>
+    // دالة لتصفية العناصر حسب البحث
+    function filterItems() {
+      var input, filter, items, item, i, txtValue;
+      input = document.getElementById("searchInput");
+      filter = input.value.toLowerCase();
+      items = document.getElementsByClassName("surah-item");
+      for (i = 0; i < items.length; i++) {
+        item = items[i];
+        txtValue = item.textContent || item.innerText;
+        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
