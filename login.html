@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #7a0019; /* لون الخلفية الغامق */
+            background-image: radial-gradient(circle, #9b001f 0%, #4a000e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* القلوب الصغيرة اللي في الخلفية */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 15px;
+            animation: float 10s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh); }
+            100% { transform: translateY(-10vh); }
+        }
+
+        /* شكل القلب الكبير */
+        .heart-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            background-color: #c41e3a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            /* عمل شكل القلب بالـ CSS */
+            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>');
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-position: center;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        .content {
+            z-index: 2;
+            text-align: center;
+            width: 80%;
+        }
+
+        h1 { font-size: 1.4rem; margin-bottom: 5px; }
+        p { font-size: 0.8rem; opacity: 0.8; margin-bottom: 20px; }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        label { font-size: 0.7rem; display: block; margin-right: 10px; margin-bottom: 5px; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 15px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            color: white;
+            text-align: center;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input::placeholder { color: rgba(255,255,255,0.5); }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover { background: rgba(255, 255, 255, 0.2); }
+
+        .sparkle {
+            position: absolute;
+            top: 20%;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        for (let i = 0; i < 20; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'bg-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            heart.style.delay = Math.random() * 5 + 's';
+            document.body.appendChild(heart);
+        }
+    </script>
+
+    <div class="heart-container">
+        <div class="content">
+            <div class="sparkle">✨💖</div>
+            <h1>Enter Password</h1>
+            <p>💕 Our Love Story</p>
+            
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="pass" placeholder="password">
+            </div>
+            
+            <button onclick="check()">💕 Unlock 💕</button>
+        </div>
+    </div>
+
+    <script>
+        function check() {
+            const p = document.getElementById('pass').value;
+            if (p === "11/11") {
+                window.location.href = "start.html";
+            } else {
+                alert("الباسورد غلط يا حبيبي 💔");
+            }
+        }
+    </script>
+</body>
+</html>
