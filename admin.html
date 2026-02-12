@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | Royal Library Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --accent-color: #38bdf8;
+            --danger-color: #ef4444;
+            --success-color: #22c55e;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 15px;
+        }
+
+        .admin-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 15px;
+        }
+
+        h1 { font-size: 1.5rem; margin: 0; }
+
+        .btn-back {
+            text-decoration: none;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stat-card p { font-size: 0.8rem; margin: 0 0 5px 0; color: #94a3b8; }
+        .stat-card h3 { margin: 0; color: var(--accent-color); font-size: 1.4rem; }
+
+        .form-section {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .form-group { margin-bottom: 10px; }
+        label { display: block; margin-bottom: 6px; color: #94a3b8; font-size: 0.9rem; }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+            font-family: 'Cairo';
+            font-size: 1rem;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            font-size: 0.8rem;
+        }
+
+        .btn-add {
+            background: var(--accent-color);
+            color: #0f172a;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            min-width: 500px;
+        }
+
+        th, td { padding: 12px 15px; border-bottom: 1px solid #334155; font-size: 0.9rem; }
+        th { background: rgba(56, 189, 248, 0.1); color: var(--accent-color); }
+
+        .book-img-table { width: 45px; height: 60px; object-fit: cover; border-radius: 5px; }
+
+        .btn-delete {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        @media (min-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .grid-inputs { grid-template-columns: 1fr 1fr; }
+            .full-width { grid-column: span 2; }
+            .stats { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <header>
+            <h1>لوحة الإدارة</h1>
+            <a href="index.html" class="btn-back">العودة للمتجر ←</a>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <p>إجمالي الكتب</p>
+                <h3 id="totalBooks">0</h3>
+            </div>
+            <div class="stat-card">
+                <p>التصنيفات</p>
+                <h3 id="totalCats">0</h3>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2 style="margin-top:0; font-size: 1.2rem;">إضافة كتاب جديد</h2>
+            <form id="addBookForm">
+                <div class="grid-inputs">
+                    <div class="form-group">
+                        <label>عنوان الكتاب</label>
+                        <input type="text" id="title" required placeholder="مثال: فن الإقناع">
+                    </div>
+                    <div class="form-group">
+                        <label>المؤلف</label>
+                        <input type="text" id="author" required placeholder="اسم الكاتب">
+                    </div>
+                    <div class="form-group">
+                        <label>السعر (EGP)</label>
+                        <input type="text" id="price" required placeholder="مثال: 150 EGP">
+                    </div>
+                    <div class="form-group">
+                        <label>التصنيف</label>
+                        <select id="category">
+                            <option value="تطوير ذات">تطوير ذات</option>
+                            <option value="روايات">روايات</option>
+                            <option value="تكنولوجيا">تكنولوجيا</option>
+                            <option value="تاريخ">تاريخ</option>
+                            <option value="علم نفس">علم نفس</option>
+                            <option value="متنوع">متنوع</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>عدد الصفحات</label>
+                        <input type="text" id="pages" placeholder="مثال: 200 صفحة">
+                    </div>
+                    <div class="form-group">
+                        <label>ارفع صورة الغلاف</label>
+                        <input type="file" id="imageFile" accept="image/*" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>وصف الكتاب</label>
+                        <textarea id="desc" rows="3" required placeholder="نبذة عن الكتاب..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-add">إضافة الكتاب للمكتبة</button>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>الغلاف</th>
+                        <th>العنوان</th>
+                        <th>المؤلف</th>
+                        <th>السعر</th>
+                        <th>حذف</th>
+                    </tr>
+                </thead>
+                <tbody id="adminBooksTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhYO-Pp9ERg3JMR0gwo6WQ_hw_FC3o3Gc",
+            authDomain: "library-a87d2.firebaseapp.com",
+            projectId: "library-a87d2",
+            storageBucket: "library-a87d2.firebasestorage.app",
+            messagingSenderId: "589515598436",
+            appId: "1:589515598436:web:8e597bac352ec131290d71",
+            databaseURL: "https://library-a87d2-default-rtdb.firebaseio.com" // رابط الـ Database ضروري جداً
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const booksRef = ref(db, 'books');
+
+        const form = document.getElementById('addBookForm');
+        const tableBody = document.getElementById('adminBooksTable');
+
+        // جلب البيانات وعرضها
+        onValue(booksRef, (snapshot) => {
+            const data = snapshot.val();
+            tableBody.innerHTML = '';
+            let count = 0;
+            let categories = new Set();
+            
+            if (data) {
+                Object.keys(data).forEach((key) => {
+                    const book = data[key];
+                    count++;
+                    categories.add(book.category);
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td><img src="${book.image}" class="book-img-table"></td>
+                            <td>${book.title}</td>
+                            <td>${book.author}</td>
+                            <td>${book.price}</td>
+                            <td><button class="btn-delete" onclick="deleteBook('${key}')">حذف</button></td>
+                        </tr>
+                    `;
+                });
+            }
+            document.getElementById('totalBooks').innerText = count;
+            document.getElementById('totalCats').innerText = categories.size;
+        });
+
+        // إضافة كتاب جديد
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const file = document.getElementById('imageFile').files[0];
+            const reader = new FileReader();
+
+            if (!file) return;
+
+            reader.onload = (event) => {
+                const newBook = {
+                    title: document.getElementById('title').value,
+                    author: document.getElementById('author').value,
+                    price: document.getElementById('price').value,
+                    category: document.getElementById('category').value,
+                    pages: document.getElementById('pages').value,
+                    image: event.target.result,
+                    desc: document.getElementById('desc').value
+                };
+                push(booksRef, newBook).then(() => {
+                    form.reset();
+                    alert('تم الحفظ في السحابة بنجاح!');
+                }).catch(err => alert("خطأ في الحفظ: " + err.message));
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // دالة الحذف
+        window.deleteBook = (key) => {
+            if(confirm('هل أنت متأكد من حذف هذا الكتاب نهائياً من السيرفر؟')) {
+                remove(ref(db, 'books/' + key));
+            }
+        };
+    </script>
+</body>
+</html>

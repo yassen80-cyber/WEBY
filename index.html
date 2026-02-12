@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المكتبة الملكية v2.0 | Royal Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --accent-color: #38bdf8;
+            --whatsapp-color: #22c55e;
+            --modal-overlay: rgba(0, 0, 0, 0.85);
+            --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+        }
+
+        * { box-sizing: border-box; transition: 0.3s ease; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-container {
+            margin-top: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 2px solid #334155;
+            background: #1e293b;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .search-bar:focus { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .book-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .book-card:hover { transform: translateY(-10px); border-color: var(--accent-color); }
+
+        .book-cover-wrapper { position: relative; height: 350px; overflow: hidden; }
+        .book-cover { width: 100%; height: 100%; object-fit: cover; }
+
+        .book-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .book-info { padding: 20px; flex-grow: 1; }
+        .book-title { font-size: 1.3rem; margin: 0 0 10px 0; }
+        .book-price { color: var(--accent-color); font-weight: bold; font-size: 1.2rem; }
+
+        .modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--modal-overlay);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            max-width: 800px;
+            width: 100%;
+            border-radius: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px; left: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #94a3b8;
+            z-index: 10;
+        }
+
+        .modal-body { padding: 40px; }
+        .modal-img { width: 100%; height: 100%; object-fit: cover; }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--whatsapp-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-top: 25px;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content { grid-template-columns: 1fr; max-height: 90vh; overflow-y: auto; }
+            .modal-img { height: 300px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>المكتبة الملكية</h1>
+        <p>اكتشف عالمك الخاص من المعرفة</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-bar" placeholder="ابحث عن كتابك المفضل...">
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="books-grid" id="booksGrid"></div>
+    </div>
+
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <img src="" id="modalImg" class="modal-img">
+            <div class="modal-body">
+                <h2 id="modalTitle" style="margin-top:0"></h2>
+                <p id="modalAuthor" style="color: var(--accent-color)"></p>
+                <hr style="border: 0; border-top: 1px solid #334155; margin: 20px 0;">
+                <p id="modalDesc"></p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="book-price" id="modalPrice"></span>
+                    <span id="modalPages" style="color: #94a3b8"></span>
+                </div>
+                <a href="" id="whatsappLink" target="_blank" class="whatsapp-btn">طلب الكتاب عبر واتساب</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // Firebase Configuration (تعديل مباشر بناءً على بياناتك)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhYO-Pp9ERg3JMR0gwo6WQ_hw_FC3o3Gc",
+            authDomain: "library-a87d2.firebaseapp.com",
+            databaseURL: "https://library-a87d2-default-rtdb.firebaseio.com", // تأكد من أن هذا الرابط صحيح في لوحة تحكم فيربيز
+            projectId: "library-a87d2",
+            storageBucket: "library-a87d2.firebasestorage.app",
+            messagingSenderId: "589515598436",
+            appId: "1:589515598436:web:8e597bac352ec131290d71"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const booksRef = ref(db, 'books');
+
+        let allBooks = [];
+        const booksGrid = document.getElementById('booksGrid');
+        const searchInput = document.getElementById('searchInput');
+
+        // جلب البيانات من Firebase Realtime Database
+        onValue(booksRef, (snapshot) => {
+            const data = snapshot.val();
+            allBooks = [];
+            if (data) {
+                Object.keys(data).forEach(key => {
+                    allBooks.push({ firebaseId: key, ...data[key] });
+                });
+            }
+            displayBooks(allBooks);
+        });
+
+        function displayBooks(data) {
+            if (data.length === 0) {
+                booksGrid.innerHTML = '<p style="text-align:center; width:100%; grid-column: 1/-1;">لا توجد كتب حالياً.</p>';
+                return;
+            }
+            booksGrid.innerHTML = data.map(book => `
+                <div class="book-card" onclick="openModal('${book.firebaseId}')">
+                    <div class="book-cover-wrapper">
+                        <span class="book-badge">${book.category}</span>
+                        <img src="${book.image}" class="book-cover" alt="${book.title}">
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">${book.title}</h3>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">${book.author}</p>
+                        <span class="book-price">${book.price}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // جعل الدوال متاحة للـ HTML
+        window.openModal = function(id) {
+            const book = allBooks.find(b => b.firebaseId === id);
+            if (!book) return;
+            
+            document.getElementById('modalImg').src = book.image;
+            document.getElementById('modalTitle').innerText = book.title;
+            document.getElementById('modalAuthor').innerText = "المؤلف: " + book.author;
+            document.getElementById('modalDesc').innerText = book.desc;
+            document.getElementById('modalPrice').innerText = book.price;
+            document.getElementById('modalPages').innerText = book.pages || "";
+            
+            const phone = "201XXXXXXXXX"; // ضع رقمك هنا
+            const message = encodeURIComponent(`مرحباً، أريد طلب كتاب: ${book.title}\nالسعر: ${book.price}`);
+            document.getElementById('whatsappLink').href = `https://wa.me/${phone}?text=${message}`;
+
+            document.getElementById('bookModal').style.display = 'flex';
+        };
+
+        window.closeModal = function() {
+            document.getElementById('bookModal').style.display = 'none';
+        };
+
+        window.onclick = (event) => {
+            if (event.target == document.getElementById('bookModal')) window.closeModal();
+        }
+
+        // نظام البحث
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            if (term === "6789") { window.location.href = "admin.html"; return; }
+            const filtered = allBooks.filter(book => 
+                book.title.toLowerCase().includes(term) || book.author.toLowerCase().includes(term)
+            );
+            displayBooks(filtered);
+        });
+    </script>
+</body>
+</html>
