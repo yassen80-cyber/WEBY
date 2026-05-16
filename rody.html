@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منطقة رودي الحصرية 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1, #f7aef8);
+            color: #4a0e17;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* قلوب متساقطة في الخلفية */
+        .heart-fall {
+            position: fixed;
+            top: -10%;
+            font-size: 1.5rem;
+            animation: fall linear infinite;
+            z-index: 0;
+            user-select: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        header {
+            padding: 2rem;
+            z-index: 10;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ff0a54;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 0.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7209b7;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* كارت الكلام الحلو والعشوائي */
+        .love-box {
+            background: rgba(255, 255, 255, 0.85);
+            border: 3px dashed #ff477e;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            box-shadow: 0 8px 20px rgba(255, 71, 126, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .love-box:hover {
+            transform: scale(1.02);
+        }
+
+        .love-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff0a54;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-love {
+            background: linear-gradient(90deg, #ff477e, #ff0a54);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 10, 84, 0.3);
+            transition: all 0.2s;
+            margin-top: 1rem;
+        }
+
+        .btn-love:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 10, 84, 0.5);
+        }
+
+        /* معرض الصور الفرفوش */
+        .gallery-section {
+            margin: 3rem 0;
+        }
+
+        .gallery-title {
+            color: #7209b7;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .grid-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: rotate(var(--r));
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .photo-card:hover {
+            transform: rotate(0deg) scale(1.1);
+            z-index: 20;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            background-color: #eee;
+        }
+
+        .photo-caption {
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #4f5d75;
+        }
+
+        /* لعبة الهروب والمرح */
+        .game-section {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            position: relative;
+            min-height: 200px;
+        }
+
+        .game-title {
+            font-size: 1.4rem;
+            color: #4a0e17;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            position: relative;
+            height: 80px;
+            align-items: center;
+        }
+
+        .btn-game {
+            padding: 0.7rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+
+        #yesBtn {
+            background-color: #2ec4b6;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #e63946;
+            color: white;
+            position: absolute;
+        }
+
+        /* زر العودة */
+        .back-home {
+            display: inline-block;
+            margin: 2rem 0;
+            color: #7209b7;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .back-home:hover {
+            color: #ff0a54;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1> رودي حبيبتي وعمري وحياتي</h1>
+    <div class="subtitle">انزلي يحبيبتي</div>
+</header>
+
+<main>
+    <!-- قسم صندوق السعادة والتفاهة العشوائي -->
+    <section class="love-box">
+        <div class="love-text" id="quoteText">دوسي ع الزرار ابتت</div>
+        <button class="btn-love" onclick="generateFunQuote()">دوسي ابتتت</button>
+    </section>
+
+    <!-- قسم معرض الصور (تقدر تغير الصور دي براحتك) -->
+    <section class="gallery-section">
+        <h2 class="gallery-title">احلى واحدة بجدد</h2>
+        <div class="grid-gallery">
+            <!-- كارت صورة 1 -->
+            <div class="photo-card" style="--r: -3deg;">
+                <!-- استبدل pic1.jpg برابط أو مسار صورتك -->
+                <img src="pic.jpg" alt="بومم احلى واحدة" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500'">
+                <div class="photo-caption">قموره كدا كدا</div>
+            </div>
+            <!-- كارت صورة 2 -->
+            <div class="photo-card" style="--r: 4deg;">
+                <img src="pic2.jpg" alt="حيااتيي" onerror="this.src='https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=500'">
+                <div class="photo-caption">حيااتي</div>
+            </div>
+            <!-- كارت صورة 3 -->
+            <div class="photo-card" style="--r: -2deg;">
+                <img src="pic3.jpg" alt="عمري كلهه" onerror="this.src='https://images.unsplash.com/photo-1494597564530-871f2b93ac55?w=500'">
+                <div class="photo-caption">عمري كلهه</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم اللعبة التفاعلية الهزار -->
+    <section class="game-section">
+        <h3 class="game-title" id="questionText">سؤال : هل أنا أحسن وألطف شخص في حياتك حالياً؟ 🤔</h3>
+        <div class="btn-container" id="containerBox">
+            <button class="btn-game" id="yesBtn" onclick="answeredYes()">أكيد طبعاً! 😍</button>
+            <button class="btn-game" id="noBtn" onmouseover="flyAway()" onclick="flyAway()">لأ طبعاً 😜</button>
+        </div>
+    </section>
+
+    <a href="https://wa.me/201279383905?text=رجعتلك من الصفحة يا عمري 💖" class="back-home">⬅️ ارجعي للواتس من هنا يلا يروديي</a>
+    
+</main>
+
+<script>
+    // مصفوفة الجمل الفرفوشة والمحبة
+        const funQuotes = [
+        "بحبك ا عبيطهه💖😂",
+        "اجمل حاجة ف حياتي عامهه🧠🔥",
+        "بحبكك بحبك بحبكك بحبك بحبكك بحبك بحبكك بحبك بحبكك بحبك 🥊",
+    ];
+
+
+    function generateFunQuote() {
+        const quoteText = document.getElementById('quoteText');
+        const randomIndex = Math.floor(Math.random() * funQuotes.length);
+        
+        // تأثير اختفاء وظهور خفيف عند التغيير
+        quoteText.style.opacity = 0;
+        setTimeout(() => {
+            quoteText.innerText = funQuotes[randomIndex];
+            quoteText.style.opacity = 1;
+        }, 200);
+    }
+
+    // لعبة زرار الهروب
+    function flyAway() {
+        const noBtn = document.getElementById('noBtn');
+        const containerBox = document.getElementById('containerBox');
+        
+        // حساب حدود الحركة داخل الكارد لمنع خروج الزرار برا الشاشة
+        const maxWidth = containerBox.clientWidth - noBtn.clientWidth;
+        const maxHeight = 120; // أقصى ارتفاع مسموح للحركة عمودياً
+        
+        const randomX = Math.floor(Math.random() * maxWidth);
+        const randomY = Math.floor(Math.random() * maxHeight) - 40; // توازن بين فوق وتحت
+        
+        noBtn.style.left = randomX + 'px';
+        noBtn.style.top = randomY + 'px';
+    }
+
+    function answeredYes() {
+        const questionText = document.getElementById('questionText');
+        questionText.innerHTML = "عاش عليكي! الإجابة صححح! كنت عارف إنك ذكية وبتفهمي 🥳🎉🎈❤❤";
+        document.getElementById('noBtn').style.display = 'none';
+        
+        // عمل حفلة قلوب مكثفة عند الضغط على نعم
+        for(let i=0; i<30; i++) {
+            setTimeout(createHeart, i * 100);
+        }
+    }
+
+    // صناعة قلوب تتساقط تلقائياً في الخلفية
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-fall');
+        
+        // تشكيلة من الرموز المبهجة
+        const symbols = ['💖', '🌸', '✨', '🎈', '🍭', '🍓'];
+        heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // بين 2 لـ 5 ثواني
+        heart.style.opacity = Math.random() * 0.7 + 0.3;
+        
+        document.body.appendChild(heart);
+        
+        // مسح العنصر بعد انتهاء الأنميشن عشان الصفحة متهنجش
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    // تشغيل تساقط القلوب التلقائي كل فترة
+    setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
